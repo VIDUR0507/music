@@ -1,0 +1,47 @@
+{% extends 'musicbeats2/basicPage.html'%}
+{% block title %} All Songs {% endblock %}
+
+{% block body %}
+{% if message %}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 2000
+    })
+    </script>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="padding-top: 3%;">
+            <img src="/media/{{song.image}}" alt="" height="250px" width="350px">
+        </div>
+        <div class="col-md-6 vh-80">
+            <h2 style="padding-top: 6%; font-weight: 550; color:rgb(98, 0, 255);">Title: {{song.name}}</h2>
+            <h3 style="padding-top: 2%; font-weight: 550;">Movie: {{song.movie}}</h3>
+            <h4 style="padding-top: 2%; font-weight: 550;">Artist: {{song.singer}}</h4>
+            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{song.genre}}</h5>
+            <!--<h5 style="padding-top: 2%; font-weight: 550;">Credit: <a href="{{song.genre}}" target="blank_">Click here</a></h5>-->
+            <audio controls  style="padding-top: 2%;"; class="">
+                <source src="/media/{{song.song}}" type="audio/mp3" >
+            </audio>
+            
+            <div style="padding-top: 2%;">
+                
+                <div class="row">
+                    <form class="form-inline" action="/musicbeats2/listenlater" method="POST">{% csrf_token%}
+                        <input type="hidden" name="video_id" value="{{song.song_id}}">
+                        <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listenlater</button>
+                        <a download href="/media/{{song.song}}" class="btn btn-outline-danger">Download Song</a>
+                    </form>
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

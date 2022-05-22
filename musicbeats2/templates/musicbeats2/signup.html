@@ -1,0 +1,41 @@
+{% extends 'musicbeats2/basicPage.html' %}
+{% block title %}SignUp{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+
+    <form method="POST" action="/musicbeats2/signup">{% csrf_token%}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1"  name="firstname">
+          </div>
+        
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="lastname">
+          </div>
+        
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputEmail1" name="pass1">
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Password (again)</label>
+            <input type="password" class="form-control" id="exampleInputEmail1" name="pass2">
+          </div>
+        <div style="padding-top: 2%; padding-bottom: 2%;">
+        <button type="submit" class="btn btn-primary">SignUp</button>
+      </div>
+      
+      </form>
+    </div>
+
+      {% endblock %}

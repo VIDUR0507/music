@@ -1,0 +1,31 @@
+{% extends 'musicbeats2/basicPage.html'%}
+{% block title %}Musicbeats{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<h1 style="color:rgb(5, 12, 112); text-align: center;">History</h1>
+{% if history|length < 1 %}
+        <h3 style="text-align: center; padding-top: 5%;font-weight:700; font-family: cursive;">You've no songs in your history</h3>
+{% endif %}
+
+<div class="container">
+{% for i in history reversed %}
+<div class="card mb-3" style="max-width: 940px; padding-top: 2%; padding-bottom: 2%;" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/media/{{i.image}}" class="img-fluid rounded-start" alt="...">
+         </div>
+      <div class="col-md-8">  
+        <div class="card-body">
+          <h5 class="card-title" style="color:rgb(13, 14, 13);font-weight:700;">{{i.name}}</h5>
+          <h5 class="card-title" style="color:green;font-weight:700;">Movie:{{i.movie}}</h5>
+          <p class="card-text">Tags:{{i.genre}}</p>
+          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
