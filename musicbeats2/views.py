@@ -1,4 +1,5 @@
 from multiprocessing import AuthenticationError
+from unicodedata import name
 from django.shortcuts import render
 from musicbeats2.models import Song, Listenlater, History, Channel
 from django.contrib.auth.models import User
@@ -126,7 +127,35 @@ def player(request):
 
 def channel(request, channel):
     chan = Channel.objects.filter(name=channel).first()
-    return render(request,"musicbeats2/channel.html",{"channel":chan})
+    video_ids = str(chan.music).split(" ")[1:]
+    
+    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(video_ids)])
+    song=Song.objects.filter(song_id__in=video_ids).order_by(preserved)
+
+    return render(request,"musicbeats2/channel.html",{"channel":chan, "song":song})
 
 def upload(request):
+    if request.method=="POST":
+        name=request.POST['name']
+        singer=request.POST['singer']
+        genre=request.POST['genre']
+        movie=request.POST['movie']
+        image=request.FILES['image']
+        song1=request.FILES['file']
+
+        song_model=Song(name=name, singer=singer, genre=genre, image=image, movie=movie, song=song1)
+        song_model.save()
+
+        music_id = song_model.song_id
+        channel_find = Channel.objects.filter(name=str(request.user))
+        print(channel_find)
+
+        for i in channel_find:
+            i.music += f" {music_id}"
+            i.save()
+
     return render(request,"musicbeats2/upload.html")
+
+def search(request):
+    query = request.GET.get("query")
+    song = Song.objects.filter()

@@ -1,27 +1,61 @@
 {% extends 'musicbeats2/basicPage.html' %}
 {% block title %} Upload {% endblock %}
+{% load crispy_forms_tags %}
 
 {% block body %}
  
 <h2 style="text-align:center; padding-top: 2%; color:rgb(5, 12, 112);">Upload Your Music</h2>
 
 <div class="container my-3">
-    {%for msg in messages %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong></strong> {{msg}}
-      <!--<button type="text" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
-    </div>
-    {% endfor %}
-  <form action="/musicbeats2/login" method="POST" >{% csrf_token%}
-      <div class="form-group" >
-        <label for="exampleInputEmail1" class="form-label" style="color:rgb(0, 10, 6);font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;"> Username</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" name="username">
+  <form action="/musicbeats2/upload" enctype="multipart/form-data" method="POST">{% csrf_token %} 
+      <div class="mb-3">
+        <label for="exampleInputEmail1">Music</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Your Song Name">
       </div>
-      <div class="mb-3" >
-        <label for="exampleInputPassword1" class="form-label" style="color:rgb(1, 15, 14);font-weight:700; font-family: Verdana, Geneva, Tahoma, sans-serif;">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+      
+
+      <div class="mb-3">
+          <label for="exampleInputEmail1">Singer</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="singer" placeholder="Singer Name">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1">Genre</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="genre" placeholder="Tags (Seperate By Commas)">
+        </div>
+
+
+       <!--<div class="mb-3">
+          <label for="exampleInputEmail1">Image Link: (Associated With Your Music)</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="image" placeholder="Link to Image">
+        </div>-->
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1">Movie</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="movie">
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+
+      <!--<div class="mb-3">
+          <label for="exampleInputPassword1">Credit</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Add Credit Link" name="credit">
+        </div>-->
+      
+      <div class="mb-3">
+          <label for="exampleFormControlFile1"> Song Image </label>
+          <input type="file" class="form-control" id="exampleFormControlFile1" name="image">
+       </div>
+
+      <div class="form-group">
+          <label for="exampleFormControlFile1"> Song Mp3_File </label>
+          <input type="file" class="form-control" id="exampleFormControlFile1" name="file">
+       </div>
+      
+      <div style="padding-top: 3%; padding-bottom: 3%;">
+          <button type="submit" class="btn btn-primary">Upload Song</button>
+      </div>
+      {{form|crispy}}
     </form>
   </div>
 {% endblock %}

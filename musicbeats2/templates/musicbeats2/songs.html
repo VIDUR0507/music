@@ -2,8 +2,9 @@
 {% block title %} All Songs {% endblock %}
 
 {% block body %}
+
 <div class="container" >
-{% for i in song %}
+{% for i in song  reversed %}
 <div class="card mb-3" style="max-width: 940px; padding-top: 2%; padding-bottom: 2%;" >
     <div class="row g-0">
       <div class="col-md-4">

@@ -25,9 +25,16 @@
             <h4 style="padding-top: 2%; font-weight: 550;">Artist: {{song.singer}}</h4>
             <h5 style="padding-top: 2%; font-weight: 550;">Category: {{song.genre}}</h5>
             <!--<h5 style="padding-top: 2%; font-weight: 550;">Credit: <a href="{{song.genre}}" target="blank_">Click here</a></h5>-->
-            <audio controls  style="padding-top: 2%;"; class="">
+            <!--<audio controls  style="padding-top: 2%;"; class="">
                 <source src="/media/{{song.song}}" type="audio/mp3" >
-            </audio>
+            </audio>-->
+            <div class="row">
+                <form class="form-inline" action="/musicbeats2/player" method="POST">{% csrf_token%}
+                    <input type="hidden" name="video_id" value="{{song.song_id}}">
+                    <!--<button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listenlater</button>-->
+                    <a href="/musicbeats2/player/media/{{song.song}}"><button class="btn btn-outline-danger">Play Song</button></a>
+                </form>
+             </div>
             
             <div style="padding-top: 2%;">
                 

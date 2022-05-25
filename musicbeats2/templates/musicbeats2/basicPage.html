@@ -12,6 +12,7 @@
     <title>{% block title %} {% endblock %}</title>
   </head>
   {% block css %}{% endblock %}
+  {% load crispy_forms_tags %}
   <body>
     {% load static%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,21 +42,22 @@
             
           </ul>
           <div style="padding-left: 7%">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" method="GET" action="/musicbeats2/search">
+            <input  name="query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
           
-          {%if user.is_authenticated %}
+      {%if user.is_authenticated %}
           <ul class="navbar-nav ml-auto"></ul>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" style="color:cornsilk;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome {{request.user}}</a>>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" onclick="logout()">Logout</a>
+                <a class="dropdown-item" href="/musicbeats2/c/{{request.user}}">Your Channel</a>
+                <a class="dropdown-item" href="/musicbeats2/upload">Upload Song</a>
                 <a class="dropdown-item" href="/musicbeats2/listenlater">ListenLater</a>
                 <a class="dropdown-item" href="/musicbeats2/history">History</a>
-                <a class="dropdown-item" href="/musicbeats2/upload">Upload Song</a>
+                <a class="dropdown-item" onclick="logout()">Logout</a>
                 
               </div>
           </li>
@@ -75,6 +77,11 @@
                 })
             }
         </script>-->
+      {% else %}
+        <div class="my-2" style="padding-left: 1%;">
+            <a href="/musicbeats2/login"><button class="btn btn-sm btn-danger">Login</button></a>
+            <a href="/musicbeats2/signup"><button class="btn btn-sm btn-danger">Signup</button></a>
+        </div>
           {% endif %}
         </div>
       </div>

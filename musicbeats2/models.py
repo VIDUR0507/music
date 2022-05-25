@@ -12,7 +12,7 @@ class Song(models.Model):
     movie=models.CharField(max_length=500, default="")
     image=models.ImageField(upload_to='documents')
     song=models.FileField(upload_to='song_files')
-    credit=models.CharField(max_length=1000,default="")
+    #credit=models.CharField(max_length=1000,default="")
     paginate_by = 2
                          
     def __str__(self): 

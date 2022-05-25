@@ -2,7 +2,8 @@ var audio = {
     init: function() {        
     var $that = this;        
         $(function() {            
-            $that.components.media();        
+            $that.components.media();     
+            console.log($that.components.media())   
         });    
     },
     components: {        

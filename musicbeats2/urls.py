@@ -13,4 +13,5 @@ urlpatterns = [
     path('history',views.history, name='history'),
     path('c/<str:channel>',views.channel, name='channel'),
     path('upload',views.upload, name='upload'),
+    path('search',views.search, name='search'),
 ] 
