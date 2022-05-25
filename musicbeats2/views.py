@@ -158,4 +158,4 @@ def upload(request):
 
 def search(request):
     query = request.GET.get("query")
-    song = Song.objects.filter()
+    song = Song.objects.filter(name=query)
