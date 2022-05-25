@@ -26,7 +26,6 @@ def index(request):
 
     return render(request,'index.html',{'song':song, 'watch': watch})
 
-
 def history(request):
     if request.method=="POST":
         user = request.user
@@ -119,11 +118,19 @@ def logout_user(request):
     return redirect("/")
 
 def player(request):
-    paginator= Paginator(Song.objects.all(),1)
+    listenLaters = Listenlater.objects.filter(user=request.user).all()
+    songs = Song.objects.filter(song_id__in=[listenLater.video_id for listenLater in listenLaters]).all()
+    print(songs)
+    paginator= Paginator(songs,1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context={"page_obj":page_obj}
     return render(request,'musicbeats2/player.html',context)
+
+def play_song(request,id):
+    song=Song.objects.filter(song_id=id).first()
+    context={"item":song}
+    return render(request,'musicbeats2/single_player.html',context)
 
 def channel(request, channel):
     chan = Channel.objects.filter(name=channel).first()
@@ -159,3 +166,7 @@ def upload(request):
 def search(request):
     query = request.GET.get("query")
     song = Song.objects.filter(name=query)
+
+def genre_view(request,genre):
+    songs = Song.objects.filter(genre=genre).all()
+    return render(request, "musicbeats2/genre.html", {"songs":songs})

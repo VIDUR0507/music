@@ -11,7 +11,7 @@
         showConfirmButton: false,
         timer: 2000
     })
-    </script>
+</script>
 {% endif %}
 
 <div class="container">
@@ -29,23 +29,21 @@
                 <source src="/media/{{song.song}}" type="audio/mp3" >
             </audio>-->
             <div class="row">
-                <form class="form-inline" action="/musicbeats2/player" method="POST">{% csrf_token%}
-                    <input type="hidden" name="video_id" value="{{song.song_id}}">
-                    <!--<button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listenlater</button>-->
-                    <a href="/musicbeats2/player/media/{{song.song}}"><button class="btn btn-outline-danger">Play Song</button></a>
-                </form>
-             </div>
-            
+                <div class="col">
+                    <a class="btn btn-danger btn-sm" href="{% url 'single_song' song.song_id %}">Play Song</button></a>
+                </div>
+            </div>
+
             <div style="padding-top: 2%;">
-                
+
                 <div class="row">
                     <form class="form-inline" action="/musicbeats2/listenlater" method="POST">{% csrf_token%}
                         <input type="hidden" name="video_id" value="{{song.song_id}}">
                         <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listenlater</button>
                         <a download href="/media/{{song.song}}" class="btn btn-outline-danger">Download Song</a>
                     </form>
-                   
-                    
+
+
                 </div>
             </div>
         </div>

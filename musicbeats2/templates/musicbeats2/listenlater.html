@@ -4,7 +4,12 @@
 {% block body %}
 {% load static %}
 
-<h1 style="color:rgb(5, 12, 112); text-align: center;">Listen Later</h1>
+<div class="row">
+  <div class="col text-center">
+    <h1 style="color:rgb(5, 12, 112); text-align: center;">Listen Later</h1>
+<a href="{% url 'player' %}" class="btn btn-danger btn-sm mb-3">▶️Play Songs</a>  
+  </div>
+</div>
 {% if song|length < 1 %}
         <h3 style="text-align: center; padding-top: 5%;font-weight:700; font-family: cursive;">You've no songs in your Listen later</h3>
 {% endif %}

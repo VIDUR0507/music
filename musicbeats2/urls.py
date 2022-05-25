@@ -10,8 +10,10 @@ urlpatterns = [
     path('logout_user',views.logout_user,name='logout_user'),
     path('listenlater',views.listenlater,name='listenlater'),
     path('player', views.player, name='player'),
+    path('player/media/<int:id>', views.play_song, name='single_song'),
     path('history',views.history, name='history'),
     path('c/<str:channel>',views.channel, name='channel'),
     path('upload',views.upload, name='upload'),
     path('search',views.search, name='search'),
+    path('genre/<str:genre>',views.genre_view, name='genre'),
 ] 
