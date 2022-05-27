@@ -2,7 +2,7 @@ from django.shortcuts import render
 from musicbeats2.models import Song, History, Listenlater
 from django.db.models import Case, When
 def index(request):
-    song= Song.objects.all()[0:3]
+    song= Song.objects.all()[0:8]
     watch = []
     if request.user.username:
         wl= Listenlater.objects.filter(user=request.user)
@@ -14,7 +14,7 @@ def index(request):
         watch = Song.objects.filter(song_id__in=ids).order_by(preserved)    
         watch = reversed(watch)
     else:
-        listen = Song.objects.all()[0:3]
+        listen = Song.objects.all()[0:8]
 
     genreList = Song.objects.values('genre').distinct()
     ctx ={

@@ -2,62 +2,80 @@
 {% block title %} Musicbeats {% endblock %}
 
 {% block body %}
+{% block css%}
+<style>
+  body{
+    background-color: rgb(7, 7, 7);
+   /*  background-image: url('https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?w=2000');*/ 
+    background-repeat: no-repeat;
+    background-size: cover ;
+  }
+  .card-img-top{
+      width: 100%;
+      height: 15vw;
+      object-fit: cover;
+  }
+  .card {
+    background-color: #e6dede;
+  }
+</style>
+{% endblock %}
 {% load static%}
 <!--############## CAROUSEL SLIDE CODE ####################-->
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{% static 'music_images/music-9.jpg'%}" class="d-block w-100" alt="...">
+      <img src="{% static 'music_images/b4.jpg'%}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'music_images/music-5.jpg'%}" class="d-block w-100" alt="...">
+      <img src="{% static 'music_images/music-10.jpg'%}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'music_images/music-1.jpg'%}" class="d-block w-100" alt="...">
+      <img src="{% static 'music_images/b5.jpg'%}" class="d-block w-100" alt="...">
     </div>
   </div>
 </div>
-<!--################ CARDS CODE ##################-->
+<!--################  TRENDING CARDS CODE ##################-->
 
-<h2 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif ;">Trending Songs</h2>
+<h2 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif ; color: whitesmoke;">Trending Songs</h2>
 
-<div class="row" style="padding-top: 2%; padding-left: 7%;">
+<div class="container">
+<div class="row" style="padding-top: 2%;">
   {%for i in songs %}
-
-  <div class="card" style="width: 18rem; padding-right: 2%; padding-left: 2%;">
+  <div class="col-sm-3">
+    <div class="card mb-3" style="">
     <img src="/media/{{i.image}}" class="card-img-top" alt="..." height="200px">
-    <div class="card-body">
-      <h5 class="card-title" style="color:rgb(7, 7, 7);font-weight:500; font-family:cursive;">{{i.name}}</h5>
-      <h6 class="card-title" style="color:rgb(250, 116, 7);font-weight:500;">{{i.movie}}</h6>
-      <p class="card-text" style="color:rgb(99, 236, 149);font-weight:500;">Tags: {{i.genre}}</p>
-      <a href="/musicbeats2/songs/{{i.song_id}}" class="btn btn-outline-danger">Listen Song</a>
+      <div class="card-body">
+       <h5 class="card-title" style="color:rgb(7, 7, 7);font-weight:500; font-family:cursive;">{{i.name}}</h5>
+       <h6 class="card-title" style="color:rgb(250, 116, 7);font-weight:500;">{{i.movie}}</h6>
+       <p class="card-text" style="color:rgb(99, 236, 149);font-weight:500;">Tags: {{i.genre}}</p>
+       <a href="/musicbeats2/songs/{{i.song_id}}" class="btn btn-outline-danger">▶️ Listen Song</a>
+      </div>
     </div>
   </div>
   {% endfor %}
 </div>
+</div>
 <hr>
-<!--################ FAVOURITE PLAYLIST CODE ##################-->
-<h2 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif;">Popular genres</h2>
+<!--################ GENRE PLAYLIST CODE ##################-->
+<h2 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif; color: whitesmoke;"> Popular genres</h2>
 
 <div class="container">
-  <div class="row">
-
+  <div class="row" style="padding-top: 2%">
 
     {% for genre in genreList %}
     <div class="col-sm-3">
       <div class="card mb-3" style="">
+        <img src="{% static 'music_images/genres.jpg'%}" class="card-img-top" alt="..." height="200px">
         <div class="card-body">
-          <h5 class="card-title">{{genre.genre}}</title>
-          </h5>
-          <a href="{% url 'genre' genre.genre %}" class="btn btn-primary">▶️ Listen</a>
+          <h5 class="card-title">{{genre.genre}}</title> </h5>
+          <a href="{% url 'genre' genre.genre %}" class="btn btn-outline-danger">▶️ Listen</a>
         </div>
       </div>
     </div>
 
     {% empty %}
-    <h3 style="text-align: center; padding-top: 5%;font-weight:700; font-family: cursive;">You've no songs in your
-      Listen
-      later</h3>
+    <h3 style="text-align: center; padding-top: 5%;font-weight:700; font-family: cursive;">You've no songs in your Listen later</h3>
 
     {% endfor %}
 
@@ -68,20 +86,23 @@
 <hr>
 
 <!--################ LISTEN LATER CODE ##################-->
-<h3 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif ;">Your Listen Later</h3>
-
-<div class="row" style="padding-top: 2%; padding-left: 7%;">
+<h2 style="padding-left: 7%; padding-top: 2%; font-family: Verdana, Geneva, Tahoma, sans-serif ; color: whitesmoke;">Your Listen Later</h2>
+<div class="container">
+<div class="row" style="padding-top: 2%;">
   {%for i in laters %}
-  <div class="card" style="width: 18rem; padding-right: 2%; padding-left: 2%;">
-    <img src="/media/{{i.image}}" class="card-img-top" alt="..." height="200px">
-    <div class="card-body">
-      <h5 class="card-title" style="color:rgb(7, 7, 7);font-weight:500; font-family:cursive;">{{i.name}}</h5>
-      <h6 class="card-title" style="color:rgb(250, 116, 7);font-weight:500;">{{i.movie}}</h6>
-      <p class="card-text" style="color:rgb(99, 236, 149);font-weight:500;">Tags: {{i.genre}}</p>
-      <a href="/musicbeats2/songs/{{i.song_id}}" class="btn btn-outline-danger">Listen Song</a>
+  <div class="col-sm-3">
+    <div class="card mb-3" style="">
+      <img src="/media/{{i.image}}" class="card-img-top" alt="..." height="200px">
+      <div class="card-body">
+       <h5 class="card-title" style="color:rgb(7, 7, 7);font-weight:500; font-family:cursive;">{{i.name}}</h5>
+       <h6 class="card-title" style="color:rgb(250, 116, 7);font-weight:500;">{{i.movie}}</h6>
+       <p class="card-text" style="color:rgb(99, 236, 149);font-weight:500;">Tags: {{i.genre}}</p>
+       <a href="/musicbeats2/songs/{{i.song_id}}" class="btn btn-outline-danger">▶️ Listen Song</a>
+      </div>
     </div>
   </div>
   {% endfor %}
+</div>
 </div>
 <hr>
 

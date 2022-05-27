@@ -3,7 +3,7 @@
 
 {% block body %}
  
-<h2 style="text-align:center; padding-top: 2%; color:rgb(5, 12, 112);">Channel:{{channel.name}}</h2>
+<h2 style="text-align:center; padding-top: 2%; color:rgb(221, 172, 9);">Channel:{{channel.name}}</h2>
 <div class="container" >
     {% for i in song %}
     <div class="card mb-3" style="max-width: 940px; padding-top: 2%; padding-bottom: 2%;" >
@@ -19,10 +19,10 @@
               {% if user.is_authenticated %}
               <form action="/musicbeats2/history" method="POST">{% csrf_token%}
                 <input type="hidden" name="music_id" value="{{i.song_id}}">
-              <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+              <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">▶️ Listen Song</button></a>
               </form>
               {% else %}
-              <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+              <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">▶️ Listen Song</button></a>
               {% endif %}
             </div>
           </div>

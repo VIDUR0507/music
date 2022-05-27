@@ -4,24 +4,24 @@
 
 {% block body %}
  
-<h2 style="text-align:center; padding-top: 2%; color:rgb(5, 12, 112);">Upload Your Music</h2>
+<h2 style="text-align:center; padding-top: 2%; color:rgb(221, 172, 9);">Upload Your Music</h2>
 
-<div class="container my-3">
+<div class="container my-3; col-md-6">
   <form action="/musicbeats2/upload" enctype="multipart/form-data" method="POST">{% csrf_token %} 
       <div class="mb-3">
-        <label for="exampleInputEmail1">Music</label>
+        <label for="exampleInputEmail1"  style="font-weight:700; font-family:cursive; color:whitesmoke">Music</label>
         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Your Song Name">
       </div>
       
 
       <div class="mb-3">
-          <label for="exampleInputEmail1">Singer</label>
+          <label for="exampleInputEmail1"  style="font-weight:700; font-family:cursive; color:whitesmoke">Singer</label>
           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="singer" placeholder="Singer Name">
         </div>
 
 
         <div class="mb-3">
-          <label for="exampleInputEmail1">Genre</label>
+          <label for="exampleInputEmail1" style="font-weight:700; font-family:cursive; color:whitesmoke">Genre</label>
           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="genre" placeholder="Tags (Seperate By Commas)">
         </div>
 
@@ -33,7 +33,7 @@
 
 
       <div class="mb-3">
-        <label for="exampleInputPassword1">Movie</label>
+        <label for="exampleInputPassword1" style="font-weight:700; font-family:cursive; color:whitesmoke">Movie</label>
         <input type="text" class="form-control" id="exampleInputPassword1" name="movie">
       </div>
 
@@ -43,12 +43,12 @@
         </div>-->
       
       <div class="mb-3">
-          <label for="exampleFormControlFile1"> Song Image </label>
+          <label for="exampleFormControlFile1"  style="font-weight:700; font-family:cursive; color:whitesmoke"> Song Image </label>
           <input type="file" class="form-control" id="exampleFormControlFile1" name="image">
        </div>
 
       <div class="form-group">
-          <label for="exampleFormControlFile1"> Song Mp3_File </label>
+          <label for="exampleFormControlFile1"  style="font-weight:700; font-family:cursive; color:whitesmoke"> Song Mp3_File </label>
           <input type="file" class="form-control" id="exampleFormControlFile1" name="file">
        </div>
       

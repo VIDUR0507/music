@@ -2,6 +2,8 @@
 {% block title %} All Songs {% endblock %}
 
 {% block body %}
+
+
 {% if message %}
 <script>
     Swal.fire({
@@ -20,17 +22,17 @@
             <img src="/media/{{song.image}}" alt="" height="250px" width="350px">
         </div>
         <div class="col-md-6 vh-80">
-            <h2 style="padding-top: 6%; font-weight: 550; color:rgb(98, 0, 255);">Title: {{song.name}}</h2>
-            <h3 style="padding-top: 2%; font-weight: 550;">Movie: {{song.movie}}</h3>
-            <h4 style="padding-top: 2%; font-weight: 550;">Artist: {{song.singer}}</h4>
-            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{song.genre}}</h5>
+            <h2 style="padding-top: 6%; font-weight: 550; color:rgb(255, 230, 0);">Title: {{song.name}}</h2>
+            <h3 style="padding-top: 2%; font-weight: 550; color:rgb(255, 253, 251);">Movie: {{song.movie}}</h3>
+            <h4 style="padding-top: 2%; font-weight: 550; color:rgb(248, 248, 248);">Artist: {{song.singer}}</h4>
+            <h5 style="padding-top: 2%; font-weight: 550; color:rgb(255, 255, 255);">Category: {{song.genre}}</h5>
             <!--<h5 style="padding-top: 2%; font-weight: 550;">Credit: <a href="{{song.genre}}" target="blank_">Click here</a></h5>-->
             <!--<audio controls  style="padding-top: 2%;"; class="">
                 <source src="/media/{{song.song}}" type="audio/mp3" >
             </audio>-->
             <div class="row">
                 <div class="col">
-                    <a class="btn btn-danger btn-sm" href="{% url 'single_song' song.song_id %}">Play Song</button></a>
+                    <a class="btn btn-danger btn" href="{% url 'single_song' song.song_id %}">▶️ Play Song</button></a>
                 </div>
             </div>
 

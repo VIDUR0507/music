@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 from django.db.models import Case, When
 
 def index(request):
-    song= Song.objects.all()[0:3]
+    song= Song.objects.all()[0:8]
 
     if request.user.is_authenticted:
         wl= Listenlater.objects.filter(user=request.user)
@@ -22,7 +22,7 @@ def index(request):
         watch = Song.objects.filter(song_id__in=ids).order_by(preserved)
         watch = reversed(watch)
     else:
-        listen = Song.objects.all()[0:3]
+        listen = Song.objects.all()[0:8]
 
     return render(request,'index.html',{'song':song, 'watch': watch})
 
@@ -165,7 +165,11 @@ def upload(request):
 
 def search(request):
     query = request.GET.get("query")
-    song = Song.objects.filter(name=query)
+    song = Song.objects.all()
+    qs = song.filter(name__icontains=query)
+
+    return render(request, "musicbeats2/search.html",{"song": qs, "query":query,})
+
 
 def genre_view(request,genre):
     songs = Song.objects.filter(genre=genre).all()

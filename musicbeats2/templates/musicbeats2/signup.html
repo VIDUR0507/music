@@ -2,33 +2,45 @@
 {% block title %}SignUp{% endblock %}
 
 {% block body %}
-<div class="container my-4">
+{% block css %}
+
+<style>
+  body{
+    background-color: rgb(0, 0, 0);
+   /*  background-image: url('https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?w=2000');*/ 
+    background-repeat: no-repeat;
+    background-size: cover ;
+  }
+</style>
+
+{% endblock %}
+<div class="container my-3; col-md-6">
 
     <form method="POST" action="/musicbeats2/signup">{% csrf_token%}
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" name="email">
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">Username</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="username">
           </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">First Name</label>
             <input type="text" class="form-control" id="exampleInputEmail1"  name="firstname">
           </div>
         
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">Last Name</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="lastname">
           </div>
         
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Password</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">Password</label>
             <input type="password" class="form-control" id="exampleInputEmail1" name="pass1">
           </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Password (again)</label>
+            <label for="exampleInputEmail1" class="form-label" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif; color:whitesmoke">Password (again)</label>
             <input type="password" class="form-control" id="exampleInputEmail1" name="pass2">
           </div>
         <div style="padding-top: 2%; padding-bottom: 2%;">

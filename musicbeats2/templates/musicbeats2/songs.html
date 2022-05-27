@@ -3,6 +3,8 @@
 
 {% block body %}
 
+
+{% load static %}
 <div class="container" >
 {% for i in song  reversed %}
 <div class="card mb-3" style="max-width: 940px; padding-top: 2%; padding-bottom: 2%;" >
@@ -13,15 +15,15 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title" style="color:rgb(13, 14, 13);font-weight:700;">{{i.name}}</h5>
-          <h5 class="card-title" style="color:green;font-weight:700;">Movie:{{i.movie}}</h5>
-          <p class="card-text">Tags:{{i.genre}}</p>
+          <h5 class="card-title" style="color:green; font-weight:700;">Movie:{{i.movie}}</h5>
+          <p class="card-text" style="font-weight:400;">Tags:{{i.genre}}</p>
           {% if user.is_authenticated %}
           <form action="/musicbeats2/history" method="POST">{% csrf_token%}
             <input type="hidden" name="music_id" value="{{i.song_id}}">
-          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">▶️ Listen Song</button></a>
           </form>
           {% else %}
-          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">▶️ Listen Song</button></a>
           {% endif %}
         </div>
       </div>

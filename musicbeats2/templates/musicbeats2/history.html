@@ -4,7 +4,7 @@
 {% block body %}
 {% load static %}
 
-<h1 style="color:rgb(5, 12, 112); text-align: center;">History</h1>
+<h1 style="color:rgb(5, 12, 112); text-align: center; color:rgb(221, 172, 9);">History</h1>
 {% if history|length < 1 %}
         <h3 style="text-align: center; padding-top: 5%;font-weight:700; font-family: cursive;">You've no songs in your history</h3>
 {% endif %}
@@ -21,7 +21,7 @@
           <h5 class="card-title" style="color:rgb(13, 14, 13);font-weight:700;">{{i.name}}</h5>
           <h5 class="card-title" style="color:green;font-weight:700;">Movie:{{i.movie}}</h5>
           <p class="card-text">Tags:{{i.genre}}</p>
-          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">Listen Song</button></a>
+          <a href="/musicbeats2/songs/{{i.song_id}}"><button class="btn btn-outline-danger">▶️ Listen Song</button></a>
         </div>
       </div>
     </div>
