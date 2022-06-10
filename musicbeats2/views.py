@@ -78,13 +78,19 @@ def songpost(request, id):
 
 
 def login(request):
+
     if request.method=="POST":
         userName=request.POST['username']
         password=request.POST['password']
         user=authenticate(username=userName, password=password)
         from django.contrib.auth import login
         login(request, user)
-        messages.success(request,"Login")
+        #if userName and password:
+           # messages.success(request, 'Your message has been sent successfully.')
+        #elif not userName:
+           # messages.error(request, 'Please enter your name.')
+        #elif not password:
+            #essages.error(request, 'Please enter your password.')
         return redirect('/')
 
     return render(request, 'musicbeats2/login.html')
@@ -149,6 +155,20 @@ def upload(request):
         movie=request.POST['movie']
         image=request.FILES['image']
         song1=request.FILES['file']
+        if name and singer and genre and movie and image and song1:
+            messages.success(request, 'Your Song has been uploaded successfully.')
+        elif not name:
+            messages.error(request, 'Please enter your name.')
+        elif not singer:
+            messages.error(request, 'Please enter your singer.')
+        elif not genre:
+            messages.error(request, 'Please enter your genre.')
+        elif not movie:
+            messages.error(request, 'Please enter your movie.')
+        #elif not image:
+            #messages.error(request, 'Please enter your image.')
+        #elif not song1:
+            #messages.error(request, 'Please enter your song.')
 
         song_model=Song(name=name, singer=singer, genre=genre, image=image, movie=movie, song=song1)
         song_model.save()
@@ -166,6 +186,7 @@ def upload(request):
 def search(request):
     query = request.GET.get("query")
     song = Song.objects.all()
+    channel_q = Channel.objects.all().filter(name__icontains=query)
     qs = song.filter(name__icontains=query)
 
     return render(request, "musicbeats2/search.html",{"song": qs, "query":query,})
