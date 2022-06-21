@@ -104,10 +104,11 @@ def signup(request):
         last_name=request.POST['lastname']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-
+        
         myuser=User.objects.create_user(username,email, pass1)
         myuser.first_name=first_name
         myuser.last_name=last_name
+       
         myuser.save()
         user=authenticate(username=username, password=pass1)
         from django.contrib.auth import login
